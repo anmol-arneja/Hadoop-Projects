@@ -63,7 +63,7 @@ public class WeatherData {
 				OutputCollector<Text, Text> output, Reporter arg3)
 				throws IOException {
 
-			// Find Max temp yourself ?
+			
 			String temperature = Values.next().toString();
 			output.collect(Key, new Text(temperature));
 		}
@@ -75,9 +75,7 @@ public class WeatherData {
 		JobConf conf = new JobConf(WeatherData.class);
 		conf.setJobName("temp");
 
-		// Note:- As Mapper's output types are not default so we have to define
-		// the
-		// following properties.
+		
 		conf.setMapOutputKeyClass(Text.class);
 		conf.setMapOutputValueClass(Text.class);
 
