@@ -1,6 +1,6 @@
 ----loading and parsing data-----
 
-A = load '/weatherPIG' using TextLoader as (data:chararray);
+A = load '/Weather_dataset.txt' using TextLoader as (data:chararray);
 AF = foreach A generate TRIM(SUBSTRING(data, 6, 14)), TRIM(SUBSTRING(data, 46, 53)), TRIM(SUBSTRING(data, 38, 45));
 store AF into '/data9' using PigStorage(',');
 S = load '/data9/part-m-00000' using PigStorage(',') as (date:chararray, min:double, max:double);
