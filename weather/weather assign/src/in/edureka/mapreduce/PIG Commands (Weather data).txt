@@ -26,11 +26,4 @@ J = foreach H2 generate MIN(S.min) as minimum;
 X = filter S by min == J.minimum;
 
 
------UDF-----
-register udf_corrupt.jar;
 
-A = load '/weatherPIG' using TextLoader as (data:chararray);
-AF = foreach A generate TRIM(SUBSTRING(data, 6, 14)), IfCorrupted(TRIM(SUBSTRING(data, 46, 53))), IfCorrupted(TRIM(SUBSTRING(data, 38, 45)));
-store AF into '/data2' using PigStorage(',');
-S = load '/data2/part-m-00000' using PigStorage(',') as (date:chararray, min:double, max:double);
-dump S;
